@@ -4,19 +4,24 @@ import { Routes, Route } from "react-router-dom";
 import PublicLayout from "../layouts/PublicLayout";
 import DashboardLayout from "../layouts/DashboardLayout";
 
+// Public Pages
 import Home from "../pages/public/Home";
+
+// Dashboard Pages
 import Overview from "../pages/dashboard/Overview";
 import Agriculture from "../pages/dashboard/Agriculture";
 import AnimalCare from "../pages/dashboard/AnimalCare";
 import WaterManagement from "../pages/dashboard/WaterManagement";
+import FarmSafety from "../pages/dashboard/FarmSafety";
+import Analytics from "../pages/dashboard/Analytics";
 
+// Other Pages
 import {
-  FarmSafety,
-  Analytics,
   SettingsPage,
   About,
 } from "../pages/dashboard/ModulePages";
 
+// 404 Page
 function NotFound() {
   return (
     <div className="flex min-h-[70vh] flex-col items-center justify-center px-5 text-center">
@@ -30,7 +35,7 @@ function NotFound() {
 
       <a
         href="/"
-        className="mt-6 text-sm font-semibold text-accent"
+        className="mt-6 text-sm font-semibold text-accent transition-colors hover:text-accent-secondary"
       >
         Return Home
       </a>
@@ -38,6 +43,7 @@ function NotFound() {
   );
 }
 
+// Main Application Routes
 export default function AppRoutes() {
   return (
     <Routes>
@@ -48,7 +54,10 @@ export default function AppRoutes() {
       </Route>
 
       {/* Dashboard */}
-      <Route path="/dashboard" element={<DashboardLayout />}>
+      <Route
+        path="/dashboard"
+        element={<DashboardLayout />}
+      >
         <Route index element={<Overview />} />
 
         <Route
@@ -66,9 +75,20 @@ export default function AppRoutes() {
           element={<WaterManagement />}
         />
 
-        <Route path="safety" element={<FarmSafety />} />
-        <Route path="analytics" element={<Analytics />} />
-        <Route path="settings" element={<SettingsPage />} />
+        <Route
+          path="safety"
+          element={<FarmSafety />}
+        />
+
+        <Route
+          path="analytics"
+          element={<Analytics />}
+        />
+
+        <Route
+          path="settings"
+          element={<SettingsPage />}
+        />
       </Route>
 
       {/* Unknown Routes */}

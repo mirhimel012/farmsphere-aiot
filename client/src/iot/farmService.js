@@ -1,49 +1,51 @@
 
-import { farmDemoData } from "../data/farmDemoData";
+import { fetchFarmStatus } from "../services/farmApi";
 
-// Future integration point:
-// Replace this adapter with the real backend API when
-// the ESP32 communication system is ready.
-
-const DEMO_MODE = true;
+// ==========================================
+// 1. FARM STATUS
+// ==========================================
 
 export async function getFarmStatus() {
-  if (DEMO_MODE) {
-    return {
-      ...farmDemoData,
-      sensors: { ...farmDemoData.sensors },
-      actuators: { ...farmDemoData.actuators },
-      modes: { ...farmDemoData.modes },
-    };
-  }
-
-  throw new Error("Live IoT integration is not configured.");
+  return await fetchFarmStatus();
 }
+
+// ==========================================
+// 2. FARM HISTORY
+// ==========================================
 
 export async function getFarmHistory() {
-  if (DEMO_MODE) {
-    return [];
-  }
-
-  throw new Error("History integration is not configured.");
+  // History API will be implemented later.
+  return [];
 }
+
+// ==========================================
+// 3. PUMP COMMANDS
+// ==========================================
 
 export async function sendPumpCommand() {
   throw new Error(
-    "Pump commands are disabled until hardware integration is ready."
+    "Pump commands are not available yet. Hardware integration is pending."
   );
 }
+
+// ==========================================
+// 4. FEEDER COMMANDS
+// ==========================================
 
 export async function sendFeederCommand() {
   throw new Error(
-    "Feeder commands are disabled until hardware integration is ready."
+    "Feeder commands are not available yet. Hardware integration is pending."
   );
 }
 
+// ==========================================
+// 5. FARM SETTINGS
+// ==========================================
+
 export async function getFarmSettings() {
-  throw new Error("Settings integration is not configured.");
+  throw new Error("Farm settings API is not implemented yet.");
 }
 
 export async function updateFarmSettings() {
-  throw new Error("Settings integration is not configured.");
+  throw new Error("Farm settings API is not implemented yet.");
 }
