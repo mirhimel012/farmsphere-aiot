@@ -8,9 +8,9 @@ import Home from "../pages/public/Home";
 import Overview from "../pages/dashboard/Overview";
 import Agriculture from "../pages/dashboard/Agriculture";
 import AnimalCare from "../pages/dashboard/AnimalCare";
+import WaterManagement from "../pages/dashboard/WaterManagement";
 
 import {
-  WaterManagement,
   FarmSafety,
   Analytics,
   SettingsPage,
@@ -61,7 +61,11 @@ export default function AppRoutes() {
           element={<AnimalCare />}
         />
 
-        <Route path="water" element={<WaterManagement />} />
+        <Route
+          path="water"
+          element={<WaterManagement />}
+        />
+
         <Route path="safety" element={<FarmSafety />} />
         <Route path="analytics" element={<Analytics />} />
         <Route path="settings" element={<SettingsPage />} />
