@@ -7,9 +7,9 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import Home from "../pages/public/Home";
 import Overview from "../pages/dashboard/Overview";
 import Agriculture from "../pages/dashboard/Agriculture";
+import AnimalCare from "../pages/dashboard/AnimalCare";
 
 import {
-  AnimalCare,
   WaterManagement,
   FarmSafety,
   Analytics,
@@ -56,7 +56,11 @@ export default function AppRoutes() {
           element={<Agriculture />}
         />
 
-        <Route path="animal-care" element={<AnimalCare />} />
+        <Route
+          path="animal-care"
+          element={<AnimalCare />}
+        />
+
         <Route path="water" element={<WaterManagement />} />
         <Route path="safety" element={<FarmSafety />} />
         <Route path="analytics" element={<Analytics />} />
