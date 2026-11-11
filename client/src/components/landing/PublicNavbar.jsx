@@ -85,7 +85,7 @@ function NavigationLink({ link, onClick }) {
 function DashboardButton({ mobile = false, onClick }) {
   return (
     <Link
-      to="/dashboard"
+      to="/login"
       onClick={onClick}
       className={`group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl border border-cyan-400/30 bg-cyan-400/[0.07] font-semibold text-accent transition-all duration-300 hover:border-cyan-300/60 hover:bg-cyan-400/[0.13] hover:shadow-[0_0_24px_rgba(34,211,238,0.12)] ${
         mobile
