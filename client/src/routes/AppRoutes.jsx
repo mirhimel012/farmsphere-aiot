@@ -1,14 +1,14 @@
 
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import PublicLayout from "../layouts/PublicLayout";
 import DashboardLayout from "../layouts/DashboardLayout";
 
 import Home from "../pages/public/Home";
 import Overview from "../pages/dashboard/Overview";
+import Agriculture from "../pages/dashboard/Agriculture";
 
 import {
-  Agriculture,
   AnimalCare,
   WaterManagement,
   FarmSafety,
@@ -20,9 +20,18 @@ import {
 function NotFound() {
   return (
     <div className="flex min-h-[70vh] flex-col items-center justify-center px-5 text-center">
-      <h1 className="text-6xl font-extrabold text-accent">404</h1>
-      <p className="mt-4 text-text-muted">Page not found.</p>
-      <a href="/" className="mt-6 text-sm font-semibold text-accent">
+      <h1 className="text-6xl font-extrabold text-accent">
+        404
+      </h1>
+
+      <p className="mt-4 text-text-muted">
+        Page not found.
+      </p>
+
+      <a
+        href="/"
+        className="mt-6 text-sm font-semibold text-accent"
+      >
         Return Home
       </a>
     </div>
@@ -41,7 +50,12 @@ export default function AppRoutes() {
       {/* Dashboard */}
       <Route path="/dashboard" element={<DashboardLayout />}>
         <Route index element={<Overview />} />
-        <Route path="agriculture" element={<Agriculture />} />
+
+        <Route
+          path="agriculture"
+          element={<Agriculture />}
+        />
+
         <Route path="animal-care" element={<AnimalCare />} />
         <Route path="water" element={<WaterManagement />} />
         <Route path="safety" element={<FarmSafety />} />
