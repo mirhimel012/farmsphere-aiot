@@ -1,7 +1,6 @@
 
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
-
 import {
   ArrowRight,
   ArrowUpRight,
@@ -10,559 +9,420 @@ import {
   Droplets,
   ShieldCheck,
   Cpu,
-  Waves,
-  Zap,
-  CircuitBoard,
-  Monitor,
-  CheckCircle2,
-  FlaskConical,
+  Wifi,
+  LayoutDashboard,
+  Activity,
 } from "lucide-react";
-
-import SectionHeading from "../../components/landing/SectionHeading";
-import FeatureCard from "../../components/landing/FeatureCard";
-import ArchitectureFlow from "../../components/landing/ArchitectureFlow";
 
 const features = [
   {
-    number: "01",
     icon: Sprout,
     title: "Smart Agriculture",
-    description:
-      "Monitor soil moisture and automate garden irrigation through sensor-based monitoring and pump control.",
+    description: "Soil moisture monitoring and intelligent irrigation management.",
+    color: "text-emerald-400",
   },
   {
-    number: "02",
     icon: PawPrint,
     title: "Animal Care",
-    description:
-      "Support automated fish feeding, shared cat and dog feeding, and pet drinking-water supply.",
+    description: "Automated feeding and pet drinking-water monitoring.",
+    color: "text-violet-400",
   },
   {
-    number: "03",
     icon: Droplets,
     title: "Water Management",
-    description:
-      "Monitor the central water tank and coordinate separate pumps with low-water protection.",
+    description: "Water-level monitoring and pump management.",
+    color: "text-cyan-400",
   },
   {
-    number: "04",
     icon: ShieldCheck,
     title: "Farm Safety",
-    description:
-      "Monitor flame detection events and support safety-aware operation of connected devices.",
+    description: "Flame detection monitoring and safety event alerts.",
+    color: "text-amber-400",
   },
 ];
 
-const hardware = [
-  {
-    icon: Cpu,
-    name: "ESP32 DevKit",
-    detail: "Main microcontroller",
-    status: "Current design",
-  },
-  {
-    icon: Waves,
-    name: "Soil Moisture Sensor",
-    detail: "Garden soil monitoring",
-    status: "Current design",
-  },
-  {
-    icon: Zap,
-    name: "Relay Modules",
-    detail: "Two pump control channels",
-    status: "Current design",
-  },
-  {
-    icon: CircuitBoard,
-    name: "Servo Motors",
-    detail: "Fish and shared pet feeders",
-    status: "Current design",
-  },
-  {
-    icon: Monitor,
-    name: "16×2 I²C LCD",
-    detail: "Local system information",
-    status: "Current design",
-  },
-  {
-    icon: ShieldCheck,
-    name: "Flame Sensor",
-    detail: "Farm safety monitoring",
-    status: "Current design",
-  },
+const architecture = [
+  { icon: Activity, title: "Sensors" },
+  { icon: Cpu, title: "ESP32 Controller" },
+  { icon: Wifi, title: "Connectivity" },
+  { icon: LayoutDashboard, title: "Dashboard" },
 ];
 
-const container = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.12,
-    },
-  },
-};
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 25 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.65 },
-  },
-};
+function Eyebrow({ children }) {
+  return (
+    <div className="flex items-center gap-3">
+      <span className="h-px w-7 bg-accent" />
+      <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-accent sm:text-xs">
+        {children}
+      </span>
+    </div>
+  );
+}
 
 function HeroVisual() {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.94, x: 20 }}
-      animate={{ opacity: 1, scale: 1, x: 0 }}
-      transition={{ duration: 0.8 }}
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, delay: 0.15 }}
       className="relative mx-auto w-full max-w-lg"
     >
-      <div className="absolute inset-10 rounded-full bg-cyan-500/10 blur-[100px]" />
+      <div className="glass relative overflow-hidden rounded-2xl p-6 sm:p-8">
+        <div className="flex items-center justify-between border-b border-white/[0.07] pb-5">
+          <div className="flex items-center gap-3">
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-accent/15 bg-accent/[0.07]">
+              <Cpu size={23} className="text-accent" />
+            </div>
 
-      <div className="glass relative overflow-hidden rounded-3xl p-5 sm:p-7">
-        <div className="mb-7 flex items-center justify-between">
-          <div>
-            <p className="text-xs text-text-muted">
-              SYSTEM ARCHITECTURE
-            </p>
-            <h3 className="mt-1 font-semibold">
-              FarmSphere AIoT
-            </h3>
+            <div>
+              <h3 className="text-sm font-semibold text-text-primary">
+                FarmSphere AIoT
+              </h3>
+              <p className="mt-1 text-[10px] tracking-wider text-text-muted">
+                SMART FARM PLATFORM
+              </p>
+            </div>
           </div>
 
-          <div className="rounded-lg border border-cyan-400/20 bg-cyan-400/10 p-2">
-            <Cpu className="text-accent" size={23} />
-          </div>
+          <span className="rounded-md border border-amber-400/20 bg-amber-400/[0.06] px-3 py-1.5 text-[10px] font-semibold text-amber-300">
+            DEMO
+          </span>
         </div>
 
-        <div className="grid grid-cols-2 gap-3">
-          {[
-            { icon: Sprout, label: "Agriculture" },
-            { icon: PawPrint, label: "Animal Care" },
-            { icon: Droplets, label: "Water System" },
-            { icon: ShieldCheck, label: "Farm Safety" },
-          ].map((item) => {
-            const Icon = item.icon;
+        <div className="mt-7">
+          <p className="text-xs text-text-muted">Platform overview</p>
+          <h3 className="mt-2 text-xl font-semibold text-text-primary">
+            One connected farm.
+            <span className="block text-accent">Multiple possibilities.</span>
+          </h3>
+        </div>
+
+        <div className="mt-7 grid grid-cols-2 gap-3">
+          {features.map((feature) => {
+            const Icon = feature.icon;
 
             return (
               <div
-                key={item.label}
-                className="rounded-xl border border-white/10 bg-white/[0.03] p-4"
+                key={feature.title}
+                className="rounded-xl border border-white/[0.07] bg-white/[0.025] p-4 transition duration-300 hover:border-accent/20 hover:bg-white/[0.04]"
               >
-                <Icon size={22} className="mb-3 text-accent" />
-                <p className="text-xs font-medium">
-                  {item.label}
+                <Icon size={22} className={feature.color} />
+                <p className="mt-4 text-xs font-semibold text-text-primary">
+                  {feature.title}
                 </p>
               </div>
             );
           })}
         </div>
 
-        <div className="my-5 flex items-center justify-center gap-3">
-          <div className="h-px flex-1 bg-gradient-to-r from-transparent to-cyan-400/40" />
-          <Cpu size={22} className="text-accent" />
-          <div className="h-px flex-1 bg-gradient-to-l from-transparent to-cyan-400/40" />
-        </div>
+        <div className="mt-6 flex items-center gap-3 rounded-xl border border-accent/15 bg-accent/[0.04] p-4">
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10">
+            <Cpu size={21} className="text-accent" />
+          </div>
 
-        <div className="rounded-xl border border-cyan-400/20 bg-cyan-400/[0.06] p-4 text-center">
-          <p className="text-sm font-semibold">
-            ESP32 Smart Controller
-          </p>
-          <p className="mt-1 text-xs text-text-muted">
-            Sensor inputs · Device automation
-          </p>
-        </div>
-
-        <div className="mt-5 flex items-center justify-between border-t border-white/10 pt-4">
-          <span className="text-xs text-text-muted">
-            Prototype visualization
-          </span>
-          <span className="flex items-center gap-2 text-xs text-amber-300">
-            <span className="h-2 w-2 rounded-full bg-amber-400" />
-            In Development
-          </span>
-        </div>
-      </div>
-
-      <div className="absolute -bottom-5 -left-5 hidden rounded-xl border border-white/10 bg-surface p-4 shadow-xl sm:block">
-        <div className="flex items-center gap-3">
-          <FlaskConical className="text-accent" size={22} />
           <div>
-            <p className="text-xs font-semibold">Prototype V4</p>
-            <p className="text-[10px] text-text-muted">
-              ESP32-based system
+            <p className="text-sm font-semibold text-text-primary">
+              ESP32 Smart Controller
+            </p>
+            <p className="mt-1 text-[10px] text-text-muted">
+              Central hardware controller
             </p>
           </div>
         </div>
+
+        <div className="mt-5 flex items-center justify-between border-t border-white/[0.07] pt-4">
+          <span className="text-[10px] text-text-muted">
+            FarmSphere V4
+          </span>
+          <span className="flex items-center gap-2 text-[10px] text-amber-300">
+            <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
+            Development demo
+          </span>
+        </div>
       </div>
+
+      <div className="pointer-events-none absolute -bottom-5 -right-5 -z-10 h-40 w-40 rounded-full bg-accent/[0.07] blur-3xl" />
     </motion.div>
   );
 }
 
-function Home() {
+function HeroSection() {
   return (
-    <div className="overflow-hidden">
+    <section className="relative px-5 pb-20 pt-10 sm:px-8 sm:pb-24 sm:pt-14 lg:pt-16">
+      <div className="pointer-events-none absolute -left-40 top-0 h-96 w-96 rounded-full bg-violet-500/[0.07] blur-[120px]" />
+      <div className="pointer-events-none absolute -right-40 top-20 h-96 w-96 rounded-full bg-cyan-500/[0.07] blur-[120px]" />
 
-      {/* HERO SECTION */}
-      <section className="relative px-5 pb-28 pt-20 sm:pt-28 lg:pb-36 lg:pt-36">
-        <div className="pointer-events-none absolute -left-40 top-0 h-96 w-96 rounded-full bg-purple-600/10 blur-[130px]" />
-
-        <div className="pointer-events-none absolute -right-40 top-20 h-96 w-96 rounded-full bg-cyan-500/10 blur-[130px]" />
-
-        <div className="relative mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-2">
+      <div className="relative mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2 lg:gap-16">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: {},
+            visible: {
+              transition: { staggerChildren: 0.12 },
+            },
+          }}
+        >
           <motion.div
-            variants={container}
-            initial="hidden"
-            animate="visible"
+            variants={{
+              hidden: { opacity: 0, y: 18 },
+              visible: { opacity: 1, y: 0 },
+            }}
           >
-            <motion.div variants={fadeUp}>
-              <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/5 px-4 py-2">
-                <Sprout size={15} className="text-accent" />
-                <span className="text-[10px] font-semibold tracking-[0.16em] text-accent sm:text-xs">
-                  INTELLIGENT FARMING TECHNOLOGY
-                </span>
-              </div>
-            </motion.div>
-
-            <motion.h1
-              variants={fadeUp}
-              className="text-5xl font-extrabold leading-[1.12] tracking-tight sm:text-6xl lg:text-7xl"
-            >
-              Farming
-              <span className="block">Smarter.</span>
-              <span className="block bg-gradient-to-r from-cyan-300 to-violet-400 bg-clip-text text-transparent">
-                Living Better.
+            <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-accent/15 bg-accent/[0.04] px-4 py-2">
+              <Sprout size={15} className="text-accent" />
+              <span className="text-[10px] font-semibold tracking-[0.15em] text-accent sm:text-xs">
+                INTELLIGENT FARMING TECHNOLOGY
               </span>
-            </motion.h1>
-
-            <motion.p
-              variants={fadeUp}
-              className="mt-7 max-w-xl text-sm leading-8 text-text-muted sm:text-base"
-            >
-              Meet FarmSphere AIoT — an integrated smart
-              farming platform bringing agriculture,
-              animal care, water management and farm safety
-              together through connected technology.
-            </motion.p>
-
-            <motion.div
-              variants={fadeUp}
-              className="mt-9 flex flex-col gap-4 sm:flex-row"
-            >
-              <Link
-                to="/dashboard"
-                className="group inline-flex items-center justify-center gap-3 rounded-xl bg-accent px-7 py-4 text-sm font-bold text-background transition hover:bg-cyan-300"
-              >
-                Explore Dashboard
-                <ArrowRight
-                  size={18}
-                  className="transition-transform group-hover:translate-x-1"
-                />
-              </Link>
-
-              <a
-                href="#features"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 px-7 py-4 text-sm font-semibold transition hover:border-cyan-400/30 hover:bg-white/5"
-              >
-                Discover Project
-                <ArrowUpRight size={17} />
-              </a>
-            </motion.div>
-
-            <motion.div
-              variants={fadeUp}
-              className="mt-10 flex items-center gap-3"
-            >
-              <div className="h-px w-10 bg-accent" />
-              <p className="text-[10px] font-semibold tracking-[0.2em] text-text-muted">
-                AN INNOVATION PROJECT BY NESTQUORIX
-              </p>
-            </motion.div>
+            </div>
           </motion.div>
 
-          <HeroVisual />
-        </div>
-      </section>
-
-      {/* OVERVIEW */}
-      <section className="border-y border-white/5 bg-white/[0.015] px-5 py-20 sm:py-24">
-        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-2 lg:items-center">
-          <SectionHeading
-            eyebrow="ABOUT FARMSPHERE"
-            title="A Smarter Approach to"
-            highlight="Farm Management."
-            description="FarmSphere AIoT V4 is an ESP32-based smart farming prototype designed to bring multiple farm operations into one connected management platform. It combines environmental monitoring, automated feeding, water management and safety monitoring."
-          />
-
-          <div className="grid grid-cols-2 gap-3 sm:gap-4">
-            {[
-              { value: "01", label: "Smart Agriculture" },
-              { value: "02", label: "Animal Care" },
-              { value: "03", label: "Water Management" },
-              { value: "04", label: "Farm Safety" },
-            ].map((item) => (
-              <div
-                key={item.value}
-                className="glass rounded-2xl p-5 sm:p-7"
-              >
-                <p className="text-3xl font-bold text-accent">
-                  {item.value}
-                </p>
-                <p className="mt-3 text-xs font-medium text-text-muted sm:text-sm">
-                  {item.label}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FEATURES */}
-      <section
-        id="features"
-        className="scroll-mt-24 px-5 py-24 sm:py-28"
-      >
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="CORE CAPABILITIES"
-            title="Four Systems."
-            highlight="One Connected Platform."
-            description="Each module focuses on a different aspect of farm management while working toward a unified smart farming experience."
-          />
-
-          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {features.map((feature) => (
-              <FeatureCard key={feature.number} {...feature} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ARCHITECTURE */}
-      <section
-        id="technology"
-        className="scroll-mt-24 border-y border-white/5 bg-surface/40 px-5 py-24 sm:py-28"
-      >
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="SYSTEM ARCHITECTURE"
-            title="From Physical Sensors"
-            highlight="To Smart Control."
-            description="The system is designed around an ESP32 controller that receives sensor inputs, manages connected hardware and communicates with the FarmSphere monitoring platform."
-          />
-
-          <div className="mt-14">
-            <ArchitectureFlow />
-          </div>
-
-          <div className="mt-8 rounded-2xl border border-cyan-400/10 bg-cyan-400/[0.04] p-5">
-            <p className="text-xs leading-7 text-text-muted">
-              <span className="font-semibold text-accent">
-                Communication note:
-              </span>{" "}
-              The website-to-device communication layer is
-              under development. The final implementation
-              will be determined after hardware testing.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* HARDWARE */}
-      <section className="px-5 py-24 sm:py-28">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="HARDWARE COMPONENTS"
-            title="The Technology"
-            highlight="Behind the System."
-            description="The V4 prototype design uses an ESP32 controller and a combination of sensors and actuators to support its different farm operations."
-          />
-
-          <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {hardware.map((item) => {
-              const Icon = item.icon;
-
-              return (
-                <div
-                  key={item.name}
-                  className="glass glass-hover rounded-2xl p-5"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="rounded-xl bg-cyan-400/10 p-3">
-                      <Icon size={22} className="text-accent" />
-                    </div>
-
-                    <div className="min-w-0 flex-1">
-                      <h3 className="text-sm font-semibold">
-                        {item.name}
-                      </h3>
-
-                      <p className="mt-2 text-xs text-text-muted">
-                        {item.detail}
-                      </p>
-
-                      <div className="mt-4 flex items-center gap-2">
-                        <CheckCircle2
-                          size={13}
-                          className="text-success"
-                        />
-                        {/* <span className="text-[10px] text-success">
-                          {item.status}
-                        </span> */}
-                        <span className="text-[10px] text-text-muted">
-                          Included in V4 design
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          <div className="mt-6 rounded-2xl border border-amber-400/15 bg-amber-400/[0.04] p-5">
-            <p className="text-xs leading-7 text-text-muted">
-              <span className="font-semibold text-amber-300">
-                Planned additions:
-              </span>{" "}
-              Water tank and pet bowl level sensors are
-              planned for the V4 implementation. Physical
-              assembly and testing are still in progress.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* HOW IT WORKS */}
-      <section className="border-y border-white/5 bg-surface/40 px-5 py-24 sm:py-28">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="WORKFLOW"
-            title="How FarmSphere"
-            highlight="Works."
-            description="The platform is designed to connect farm monitoring with device automation through a structured workflow."
-            centered
-          />
-
-          <div className="mt-14 grid gap-5 md:grid-cols-3">
-            {[
-              {
-                number: "01",
-                title: "Monitor",
-                description:
-                  "Sensors collect soil, water and safety-related information from the farm environment.",
-              },
-              {
-                number: "02",
-                title: "Process",
-                description:
-                  "The ESP32 controller processes sensor inputs and manages supported automation rules.",
-              },
-              {
-                number: "03",
-                title: "Manage",
-                description:
-                  "The FarmSphere platform is designed to display system information and provide authorized controls.",
-              },
-            ].map((item) => (
-              <div
-                key={item.number}
-                className="glass rounded-2xl p-7"
-              >
-                <span className="text-4xl font-extrabold text-cyan-400/30">
-                  {item.number}
-                </span>
-
-                <h3 className="mt-5 text-xl font-semibold">
-                  {item.title}
-                </h3>
-
-                <p className="mt-3 text-sm leading-7 text-text-muted">
-                  {item.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* TEAM */}
-      <section
-        id="team"
-        className="scroll-mt-24 px-5 py-24 sm:py-28"
-      >
-        <div className="mx-auto max-w-4xl text-center">
-          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-violet-400/20 bg-violet-400/10">
-            <Cpu size={32} className="text-accent-secondary" />
-          </div>
-
-          <p className="mb-4 text-xs font-bold tracking-[0.22em] text-accent">
-            MEET THE TEAM
-          </p>
-
-          <h2 className="text-3xl font-bold sm:text-5xl">
-            Innovation Through
-            <span className="text-accent"> Collaboration.</span>
-          </h2>
-
-          <p className="mx-auto mt-6 max-w-2xl text-sm leading-8 text-text-muted sm:text-base">
-            FarmSphere AIoT is developed by Team NestQuorix,
-            bringing together hardware engineering, software
-            development and connected technology to explore
-            smarter farm management.
-          </p>
-
-          <Link
-            to="/about"
-            className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-accent transition hover:text-cyan-300"
+          <motion.h1
+            variants={{
+              hidden: { opacity: 0, y: 18 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            className="max-w-2xl text-5xl font-extrabold leading-[1.12] tracking-tight text-text-primary sm:text-6xl lg:text-7xl"
           >
-            Learn About Our Project
-            <ArrowRight size={17} />
-          </Link>
-        </div>
-      </section>
+            Farming
+            <span className="block">Smarter.</span>
+            <span className="block bg-gradient-to-r from-cyan-300 to-violet-400 bg-clip-text text-transparent">
+              Living Better.
+            </span>
+          </motion.h1>
 
-      {/* CTA */}
-      <section className="px-5 pb-24">
-        <div className="relative mx-auto max-w-7xl overflow-hidden rounded-3xl border border-cyan-400/15 bg-gradient-to-br from-cyan-500/10 via-surface to-violet-500/10 px-6 py-16 text-center sm:px-12 sm:py-20">
-          <div className="pointer-events-none absolute left-1/2 top-0 h-64 w-64 -translate-x-1/2 rounded-full bg-cyan-500/10 blur-[100px]" />
+          <motion.p
+            variants={{
+              hidden: { opacity: 0, y: 18 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            className="mt-7 max-w-xl text-sm leading-8 text-text-muted sm:text-base"
+          >
+            FarmSphere AIoT brings agriculture, animal care, water
+            management, and farm safety together in one intelligent
+            farm management concept.
+          </motion.p>
 
-          <div className="relative">
-            <p className="mb-4 text-xs font-bold tracking-[0.2em] text-accent">
-              EXPLORE FARMSPHERE
-            </p>
-
-            <h2 className="text-3xl font-bold sm:text-5xl">
-              Discover the Smart
-              <span className="block text-accent">
-                Farming Experience.
-              </span>
-            </h2>
-
-            <p className="mx-auto mt-5 max-w-xl text-sm leading-7 text-text-muted">
-              Explore the FarmSphere control center and
-              discover how connected technology can support
-              modern farm management.
-            </p>
-
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 18 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            className="mt-9 flex flex-col gap-3 sm:flex-row"
+          >
             <Link
               to="/dashboard"
-              className="mt-9 inline-flex items-center gap-3 rounded-xl bg-accent px-7 py-4 text-sm font-bold text-background transition hover:bg-cyan-300"
+              className="group inline-flex items-center justify-center gap-3 rounded-xl bg-accent px-7 py-4 text-sm font-bold text-background transition hover:bg-cyan-300"
             >
               Explore Dashboard
-              <ArrowRight size={18} />
+              <ArrowRight
+                size={18}
+                className="transition-transform group-hover:translate-x-1"
+              />
             </Link>
 
-            <p className="mt-5 text-[11px] text-text-muted">
-              Dashboard currently uses development demo mode.
-            </p>
-          </div>
-        </div>
-      </section>
+            <Link
+              to="/about"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 px-7 py-4 text-sm font-semibold text-text-primary transition hover:border-accent/30 hover:bg-white/[0.03]"
+            >
+              Discover Project
+              <ArrowUpRight size={17} />
+            </Link>
+          </motion.div>
 
-    </div>
+          <motion.div
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { opacity: 1 },
+            }}
+            className="mt-10 flex items-center gap-3"
+          >
+            <span className="h-px w-9 bg-accent" />
+            <p className="text-[10px] font-semibold tracking-[0.16em] text-text-muted">
+              AN INNOVATION PROJECT BY NESTQUORIX
+            </p>
+          </motion.div>
+        </motion.div>
+
+        <HeroVisual />
+      </div>
+    </section>
   );
 }
 
-export default Home;
+function FeaturesSection() {
+  return (
+    <section className="border-y border-white/[0.05] bg-white/[0.015] px-5 py-20 sm:px-8 sm:py-24">
+      <div className="mx-auto max-w-7xl">
+        <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+          <div className="max-w-2xl">
+            <Eyebrow>Core capabilities</Eyebrow>
+
+            <h2 className="mt-5 text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
+              Four systems.
+              <span className="block text-accent">
+                One connected platform.
+              </span>
+            </h2>
+
+            <p className="mt-4 text-sm leading-7 text-text-muted">
+              Explore the main areas of FarmSphere AIoT V4.
+            </p>
+          </div>
+
+          <Link
+            to="/features"
+            className="inline-flex w-fit items-center gap-2 text-sm font-semibold text-accent transition hover:text-cyan-300"
+          >
+            View all features
+            <ArrowUpRight size={17} />
+          </Link>
+        </div>
+
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {features.map((feature, index) => {
+            const Icon = feature.icon;
+
+            return (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.45, delay: index * 0.07 }}
+                className="group rounded-2xl border border-white/[0.07] bg-surface/70 p-6 transition duration-300 hover:-translate-y-1 hover:border-accent/25 hover:bg-surface-light/70"
+              >
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/[0.04]">
+                  <Icon size={22} className={feature.color} />
+                </div>
+
+                <h3 className="mt-6 text-base font-semibold text-text-primary">
+                  {feature.title}
+                </h3>
+
+                <p className="mt-3 text-sm leading-7 text-text-muted">
+                  {feature.description}
+                </p>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ArchitectureSection() {
+  return (
+    <section className="px-5 py-20 sm:px-8 sm:py-24">
+      <div className="mx-auto max-w-7xl">
+        <div className="mx-auto max-w-2xl text-center">
+          <Eyebrow>Simple architecture</Eyebrow>
+
+          <h2 className="mt-5 text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
+            From sensors to
+            <span className="text-accent"> smart monitoring.</span>
+          </h2>
+
+          <p className="mt-4 text-sm leading-7 text-text-muted">
+            A connected architecture designed to bring physical
+            farm devices and digital monitoring together.
+          </p>
+        </div>
+
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {architecture.map((item, index) => {
+            const Icon = item.icon;
+
+            return (
+              <div
+                key={item.title}
+                className="relative rounded-2xl border border-white/[0.07] bg-surface/60 p-6 text-center transition hover:border-accent/25"
+              >
+                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent">
+                  <Icon size={22} />
+                </div>
+
+                <h3 className="mt-4 text-sm font-semibold text-text-primary">
+                  {item.title}
+                </h3>
+
+                <span className="mt-2 block font-mono text-[10px] text-text-muted/60">
+                  STEP 0{index + 1}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="mt-8 flex flex-col items-center justify-between gap-4 rounded-xl border border-white/[0.07] bg-surface/40 px-5 py-5 sm:flex-row">
+          <p className="text-xs leading-6 text-text-muted">
+            Hardware-to-dashboard integration is under development.
+            Current dashboard readings are simulated.
+          </p>
+
+          <Link
+            to="/technology"
+            className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-accent transition hover:text-cyan-300"
+          >
+            Explore technology
+            <ArrowUpRight size={16} />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FinalCTA() {
+  return (
+    <section className="px-5 pb-20 sm:px-8 sm:pb-28">
+      <div className="relative mx-auto max-w-7xl overflow-hidden rounded-2xl border border-accent/15 bg-gradient-to-br from-accent/[0.07] via-surface to-accent-secondary/[0.06] px-6 py-12 sm:px-12 sm:py-16">
+        <div className="pointer-events-none absolute -right-20 -top-24 h-64 w-64 rounded-full bg-accent/10 blur-[100px]" />
+
+        <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+          <div className="max-w-2xl">
+            <Eyebrow>Explore FarmSphere</Eyebrow>
+
+            <h2 className="mt-5 text-3xl font-bold leading-tight tracking-tight text-text-primary sm:text-4xl">
+              See smarter farm management in action.
+            </h2>
+
+            <p className="mt-4 max-w-xl text-sm leading-7 text-text-muted">
+              Explore the FarmSphere dashboard and discover
+              the different modules of our AIoT prototype.
+            </p>
+          </div>
+
+          <div className="shrink-0">
+            <Link
+              to="/dashboard"
+              className="group inline-flex items-center gap-3 rounded-xl bg-accent px-6 py-4 text-sm font-bold text-background transition hover:bg-cyan-300"
+            >
+              Open Dashboard
+              <ArrowRight
+                size={18}
+                className="transition-transform group-hover:translate-x-1"
+              />
+            </Link>
+
+            <p className="mt-3 text-center text-[10px] text-text-muted">
+              Currently running in demo mode
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default function Home() {
+  return (
+    <main className="overflow-hidden">
+      <HeroSection />
+      <FeaturesSection />
+      <ArchitectureSection />
+      <FinalCTA />
+    </main>
+  );
+}

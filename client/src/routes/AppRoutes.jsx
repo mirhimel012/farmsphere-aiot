@@ -1,25 +1,43 @@
 
-import { Routes, Route } from "react-router-dom";
+import { lazy, Suspense } from "react";
+import { Routes, Route, Link } from "react-router-dom";
 
 import PublicLayout from "../layouts/PublicLayout";
 import DashboardLayout from "../layouts/DashboardLayout";
 
-// Public Pages
-import Home from "../pages/public/Home";
+// Lazy-loaded public pages
+const Home = lazy(() => import("../pages/public/Home"));
+const About = lazy(() => import("../pages/public/About"));
+const Features = lazy(() => import("../pages/public/Features"));
+const Technology = lazy(() => import("../pages/public/Technology"));
+const Team = lazy(() => import("../pages/public/Team"));
 
-// Dashboard Pages
-import Overview from "../pages/dashboard/Overview";
-import Agriculture from "../pages/dashboard/Agriculture";
-import AnimalCare from "../pages/dashboard/AnimalCare";
-import WaterManagement from "../pages/dashboard/WaterManagement";
-import FarmSafety from "../pages/dashboard/FarmSafety";
-import Analytics from "../pages/dashboard/Analytics";
+// Lazy-loaded dashboard pages
+const Overview = lazy(() => import("../pages/dashboard/Overview"));
+const Agriculture = lazy(() => import("../pages/dashboard/Agriculture"));
+const AnimalCare = lazy(() => import("../pages/dashboard/AnimalCare"));
+const WaterManagement = lazy(
+  () => import("../pages/dashboard/WaterManagement")
+);
+const FarmSafety = lazy(() => import("../pages/dashboard/FarmSafety"));
+const Analytics = lazy(() => import("../pages/dashboard/Analytics"));
 
-// Other Pages
-import {
-  SettingsPage,
-  About,
-} from "../pages/dashboard/ModulePages";
+// Lazy-loaded dashboard utility pages
+const ModulePages = lazy(() => import("../pages/dashboard/ModulePages"));
+
+// Loading screen
+function PageLoader() {
+  return (
+    <div className="flex min-h-[60vh] items-center justify-center">
+      <div className="text-center">
+        <div className="mx-auto h-10 w-10 animate-spin rounded-full border-4 border-accent/20 border-t-accent" />
+        <p className="mt-4 text-sm text-text-muted">
+          Loading FarmSphere...
+        </p>
+      </div>
+    </div>
+  );
+}
 
 // 404 Page
 function NotFound() {
@@ -33,12 +51,12 @@ function NotFound() {
         Page not found.
       </p>
 
-      <a
-        href="/"
+      <Link
+        to="/"
         className="mt-6 text-sm font-semibold text-accent transition-colors hover:text-accent-secondary"
       >
         Return Home
-      </a>
+      </Link>
     </div>
   );
 }
@@ -46,53 +64,36 @@ function NotFound() {
 // Main Application Routes
 export default function AppRoutes() {
   return (
-    <Routes>
-      {/* Public Website */}
-      <Route element={<PublicLayout />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-      </Route>
+    <Suspense fallback={<PageLoader />}>
+      <Routes>
+        {/* Public Website */}
+        <Route element={<PublicLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/features" element={<Features />} />
+          <Route path="/technology" element={<Technology />} />
+          <Route path="/team" element={<Team />} />
+        </Route>
 
-      {/* Dashboard */}
-      <Route
-        path="/dashboard"
-        element={<DashboardLayout />}
-      >
-        <Route index element={<Overview />} />
+        {/* Dashboard */}
+        <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route index element={<Overview />} />
 
-        <Route
-          path="agriculture"
-          element={<Agriculture />}
-        />
+          <Route path="agriculture" element={<Agriculture />} />
+          <Route path="animal-care" element={<AnimalCare />} />
+          <Route path="water" element={<WaterManagement />} />
+          <Route path="safety" element={<FarmSafety />} />
+          <Route path="analytics" element={<Analytics />} />
 
-        <Route
-          path="animal-care"
-          element={<AnimalCare />}
-        />
+          <Route
+            path="settings"
+            element={<ModulePages.SettingsPage />}
+          />
+        </Route>
 
-        <Route
-          path="water"
-          element={<WaterManagement />}
-        />
-
-        <Route
-          path="safety"
-          element={<FarmSafety />}
-        />
-
-        <Route
-          path="analytics"
-          element={<Analytics />}
-        />
-
-        <Route
-          path="settings"
-          element={<SettingsPage />}
-        />
-      </Route>
-
-      {/* Unknown Routes */}
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+        {/* Unknown Routes */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Suspense>
   );
 }

@@ -1,24 +1,32 @@
 
-import { Sprout } from "lucide-react";
 import { Link } from "react-router-dom";
 
-export default function Logo({ compact = false }) {
-  return (
-    <Link to="/" className="flex items-center gap-3 shrink-0">
-      <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-cyan-400/20 bg-cyan-400/10">
-        <Sprout size={25} className="text-accent" />
-      </div>
+export default function Logo({ size = "default" }) {
+  const isLarge = size === "large";
 
-      {!compact && (
-        <div>
-          <h1 className="text-base font-extrabold tracking-wider text-text-primary">
-            FarmSphere
-          </h1>
-          <p className="text-[10px] font-medium tracking-[0.2em] text-accent">
-            AIoT PLATFORM
-          </p>
-        </div>
-      )}
+  return (
+    <Link
+      to="/"
+      className="group inline-flex w-fit items-center gap-3"
+      aria-label="FarmSphere home"
+    >
+      <img
+        src="/images/farmsphere-logo.png"
+        alt="FarmSphere logo"
+        className={`shrink-0 object-contain ${
+          isLarge ? "h-14 w-14" : "h-10 w-10"
+        }`}
+      />
+
+      <span>
+        <span className="block text-lg font-bold tracking-tight text-text-primary transition-colors group-hover:text-accent">
+          Farm<span className="text-accent">Sphere</span>
+        </span>
+
+        <span className="mt-0.5 block text-[9px] font-medium uppercase tracking-[0.18em] text-text-muted">
+          Smart Farm Management
+        </span>
+      </span>
     </Link>
   );
 }
